@@ -8,12 +8,19 @@
 public class Expense {
 
     // The data every expense carries (called "fields")
+    private int id; // unique number from the database (0 = not saved yet)
     private String description; // e.g. "Lunch"
     private double amount; // e.g. 12.50
     private String category; // e.g. "Food"
 
-    // Constructor: runs when you create a new Expense
+    // Constructor for a NEW expense that isn't in the database yet
     public Expense(String description, double amount, String category) {
+	this(0, description, amount, category);
+    }
+
+    // Constructor for an expense that already has an id (loaded from the database)
+    public Expense(int id, String description, double amount, String category) {
+	this.id = id;
 	this.description = description;
 	this.amount = amount;
 	this.category = formatCategory(category); // tidy the category first
@@ -30,6 +37,10 @@ public class Expense {
     }
 
     // Getters: let other classes READ the fields
+    public int getId() {
+	return id;
+    }
+
     public String getDescription() {
 	return description;
     }
